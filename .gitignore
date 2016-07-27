@@ -1,8 +1,0 @@
-.tox/
-build/
-dist/
-.idea/
-.eggs/
-.doctrees/
-*.egg-info/
-__pycache__/

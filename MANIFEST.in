@@ -1,5 +1,0 @@
-include *.md
-include src/**/*
-include docs/**/*
-include .gitignore
-include .travis.yml
