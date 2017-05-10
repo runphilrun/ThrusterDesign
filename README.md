@@ -10,8 +10,8 @@
 
 > Tool to aid in design of small monopropellant thrusters. *[View this project on STEMN](http://stemn.com/projects/thruster-design-tool)*
 
-## Abstract
-The thruster's nozzle, propellant, and chamber conditions each have a huge impact on performance. The fluid mechanics that model engine effectiveness are pretty complicated, unfortunately. The purpose of this script is to make it easy to see how tweaks in nozzle geometry, propellants, and chamber conditions affect performance in order to find the optimal design solution.
+## Scope
+The purpose of this script is to make it easy to see how tweaks in nozzle geometry, propellants, chamber conditions, and ambient conditions affect nozzle performance in order to find the optimal design solution. This script does not perform any optimization.
 
 ## Features
 * Simulate the performance of a thruster in space for a given set of parameters and output performance metrics.
@@ -19,22 +19,29 @@ The thruster's nozzle, propellant, and chamber conditions each have a huge impac
 * Allow the user to easily tweak parameters.
 
 ## Usage
-### Matlab
-Open `Matlab/tdu.m` in Matlab 2014 or newer.
-Edit fields as indicated to specify the propellant gas properties and nozzle dimensions of the engine, then run the script.
+### Generating an input file
+TDU loads propellant properties, inlet conditions, and nozzle geometry from a specially formatted tab-delimited text file with the extension `*.tdu`.
+
+In general, the format of an input file is as follows:
+```
+PropellantNameString
+Gamma    MolecularWeight
+T0    P0
+NumberofNodes
+xLocation0    radius0
+xlocation1    radius1
+    .            .
+    .            .
+    .            .
+xlocationN    radiusN
+```
+
+### Running the script
+* Open `tdu.m` in Matlab 2014 or newer.
+* Specify the desired input file as the value of `filein`. (For example, `filein='sample.tdu';`)
+* To show additional plots and print verbose actions and data to the command line, set `debug=true;`.
+* Run `tdu`
 Mach number, temperature ratio, and pressure ratio at the exit of the nozzle agree with [NASA Report 1135](http://www.nasa.gov/sites/default/files/734673main_Equations-Tables-Charts-CompressibleFlow-Report-1135.pdf) for air at 1 atm with an area ratio of 2.005.
 
-### Python
-
-```bash
-$ pip install tdu
-$ tdu --help
-```
-Set propellant gas properties, nozzle geometry and chamber conditions in `config.ini`.
-
-Run `tdu.py`.
-
-## About & Documentation
-Please refer to the [STEMN project page](http://stemn.com/projects/thruster-design-tool) for detailed information about the project and general theory.
 
 > *If you encounter any bugs, please report them in the [Issue Tracker](https://github.com/runphilrun/ThrusterDesign/issues)!*
